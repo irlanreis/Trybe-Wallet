@@ -1,4 +1,4 @@
-import { ACTION_CURRENCIE } from '../actions';
+import { ACTION_CURRENCIE, ACTION_EXPENSES } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -13,6 +13,11 @@ const reducerInicialWallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       currencies: action.payload,
+    };
+  case ACTION_EXPENSES:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.payload],
     };
   default:
     return state;
