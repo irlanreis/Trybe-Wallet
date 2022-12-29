@@ -15,34 +15,21 @@ class Header extends Component {
        * curr.exchangeRates[curr.currency].ask, 0).toFixed(2);
     return (
       <>
-        <div
-          data-testid="email-field"
-        >
-          { email }
-        </div>
+        <h2 data-testid="email-field">{ email }</h2>
 
-        <div
-          data-testid="total-field"
-        >
-          { despesasTotais }
-        </div>
+        <h3 data-testid="total-field">{ despesasTotais }</h3>
 
-        <div
-          data-testid="header-currency-field"
-        >
-          { cambioUtilizado }
-        </div>
+        <h3 data-testid="header-currency-field">{ cambioUtilizado }</h3>
       </>
     );
   }
 }
 
 Header.propTypes = {
-  email: PropTypes.string.isRequired,
-  expenses: PropTypes.arrayOf(
-    PropTypes.objectOf,
-  ).isRequired,
-};
+  email: PropTypes.string,
+  despesasTotais: PropTypes.number,
+  cambioUtilizado: PropTypes.string,
+}.isRequired;
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
