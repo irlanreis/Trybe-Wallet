@@ -1,4 +1,6 @@
-import { ACTION_CURRENCIE, ACTION_EXPENSES } from '../actions';
+import {
+  ACTION_CURRENCIE, ACTION_EXPENSES, SAVE_EDITED, DELETE_EXPENSES, EDIT_EXPENSES,
+} from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -17,8 +19,32 @@ const reducerInicialWallet = (state = INITIAL_STATE, action) => {
   case ACTION_EXPENSES:
     return {
       ...state,
-      expenses: [...state.expenses, action.payload],
+      expenses: [
+        ...state.expenses,
+        action.payload,
+      ],
     };
+
+  case DELETE_EXPENSES:
+    return {
+      ...state,
+      expenses: action.payload,
+    };
+
+  case EDIT_EXPENSES:
+    return {
+      ...state,
+      idToEdit: action.payload,
+      editor: true,
+    };
+
+  case SAVE_EDITED:
+    return {
+      ...state,
+      editor: false,
+      expense: action.payload,
+    };
+
   default:
     return state;
   }
