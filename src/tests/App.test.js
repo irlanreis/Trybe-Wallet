@@ -88,4 +88,48 @@ describe('Testes da Página "/carteira"', () => {
     expect(despesasTotais).toBeInTheDocument();
     expect(coin).toBeInTheDocument();
   });
+
+  it('Verifica se todos os itens do formulário são renderizados corretamente', () => {
+    const initialEntries = ['/carteira'];
+    renderWithRouterAndRedux(<App />, { initialEntries });
+
+    const value = screen.getByText(/valor:/i);
+    const description = screen.getByRole('textbox', { name: /descrição/i });
+    const currency = screen.getByText(/moeda:/i);
+    const payment = screen.getByText(/método de pagamento/i);
+    const button = screen.getByRole('button', { name: /adicionar despesa/i });
+
+    expect(value).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
+    expect(currency).toBeInTheDocument();
+    expect(payment).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
+  });
+});
+
+describe('Testes do componente "/table"', () => {
+  it('Verifica se está sendo renderizado todos os componentes da tabela', () => {
+    const initialEntries = ['/carteira'];
+    renderWithRouterAndRedux(<App />, { initialEntries });
+
+    const table = screen.getByRole('table');
+    const description = screen.getByRole('columnheader', { name: /descrição/i });
+    const category = screen.getByRole('columnheader', { name: /tag/i });
+    const payment = screen.getByRole('columnheader', { name: /método de pagamento/i });
+    const value = screen.getByText(/valor:/i);
+    const cambio = screen.getByRole('columnheader', { name: /câmbio utilizado/i });
+    const conversion = screen.getByRole('columnheader', { name: /valor convertido/i });
+    const buttons = screen.getByRole('columnheader', { name: /editar\/excluir/i });
+    const currencyBR = screen.getByRole('columnheader', { name: /valor convertido/i });
+
+    expect(table).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
+    expect(category).toBeInTheDocument();
+    expect(payment).toBeInTheDocument();
+    expect(value).toBeInTheDocument();
+    expect(cambio).toBeInTheDocument();
+    expect(conversion).toBeInTheDocument();
+    expect(buttons).toBeInTheDocument();
+    expect(currencyBR).toBeInTheDocument();
+  });
 });

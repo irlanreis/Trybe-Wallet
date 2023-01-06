@@ -1,5 +1,9 @@
 import {
-  ACTION_CURRENCIE, ACTION_EXPENSES, SAVE_EDITED, DELETE_EXPENSES, EDIT_EXPENSES,
+  ACTION_CURRENCIE,
+  SAVE_EDITED,
+  DELETE_EXPENSES,
+  EDIT_EXPENSES,
+  SAVE_EXPENSES,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -7,6 +11,7 @@ const INITIAL_STATE = {
   expenses: [],
   editor: false,
   idToEdit: 0,
+  ids: 0,
 };
 
 const reducerInicialWallet = (state = INITIAL_STATE, action) => {
@@ -16,13 +21,15 @@ const reducerInicialWallet = (state = INITIAL_STATE, action) => {
       ...state,
       currencies: action.payload,
     };
-  case ACTION_EXPENSES:
+
+  case SAVE_EXPENSES:
     return {
       ...state,
       expenses: [
         ...state.expenses,
         action.payload,
       ],
+      ids: state.ids + 1,
     };
 
   case DELETE_EXPENSES:
@@ -42,7 +49,7 @@ const reducerInicialWallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       editor: false,
-      expense: action.payload,
+      expenses: action.payload,
     };
 
   default:
