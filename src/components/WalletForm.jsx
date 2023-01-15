@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-  saveEditedExpenses,
   saveExpensesForm,
 } from '../redux/actions';
 
@@ -61,7 +60,7 @@ class WalletForm extends Component {
 
   render() {
     const { value, description, currency, method, tag } = this.state;
-    const { currencies, editor } = this.props;
+    const { currencies } = this.props;
 
     return (
       <form onSubmit={ this.handleSubmit }>
@@ -123,7 +122,7 @@ class WalletForm extends Component {
         </select>
 
         <button type="submit">
-          { editor ? 'Editar despesa' : 'Adicionar despesa'}
+          Adicionar despesa
         </button>
       </form>
     );

@@ -23,21 +23,9 @@ export const deleteExpenses = (id, expenses) => ({
   payload: expenses.filter((expense) => expense.id !== id),
 });
 
-export const editExpenses = (id) => ({
-  type: EDIT_EXPENSES,
-  payload: id,
-});
-
 export const saveExpenses = (expenses) => ({
   type: SAVE_EXPENSES,
   payload: expenses,
-});
-
-export const saveEditedExpenses = (edited, expenses) => ({
-  type: SAVE_EDITED,
-  payload: expenses.map((expense) => (
-    expense.id === edited.id ? { ...expenses, ...edited } : expense
-  )),
 });
 
 export const saveExpensesForm = (expensesInfos) => async (dispatch) => {
